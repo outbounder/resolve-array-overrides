@@ -1,7 +1,6 @@
 {
   "name": "resolve-array-overrides",
   "version": "0.0.0",
-  "description": "",
   "main": "index.js",
   "scripts": {
     "test": "jasmine-node ./test --captureExceptions"
@@ -10,5 +9,19 @@
   "license": "MIT",
   "devDependencies": {
     "organic": "~0.1.1"
-  }
+  },
+  "directories": {
+    "test": "test"
+  },
+  "dependencies": {
+    "organic": "~0.1.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/outbounder/resolve-array-overrides.git"
+  },
+  "bugs": {
+    "url": "https://github.com/outbounder/resolve-array-overrides/issues"
+  },
+  "homepage": "https://github.com/outbounder/resolve-array-overrides"
 }
