@@ -1,3 +1,5 @@
+var merge = require('merge-recursive').recursive
+
 var resolveArrayOverridesFn = function(namespace, branch, dna){
   for(var key in branch) {
     if(Array.isArray(branch[key])) {
@@ -12,6 +14,20 @@ var resolveArrayOverridesFn = function(namespace, branch, dna){
           shouldRemove = true
           var arr = dna.selectBranch(namespace+"."+key)
           arr.push(branch[key][i]["$push"])
+        }
+        if(branch[key][i]["$merge"]) {
+          shouldRemove = true
+          var arr = dna.selectBranch(namespace+"."+key)
+          for(var index in branch[key][i]["$merge"]) {
+            merge(arr[parseInt(index)], branch[key][i]["$merge"][index])
+          }
+        }
+        if(branch[key][i]["$insert"]) {
+          shouldRemove = true
+          var arr = dna.selectBranch(namespace+"."+key)
+          for(var index in branch[key][i]["$insert"]) {
+            arr.splice(parseInt(index),0, branch[key][i]["$insert"][index])
+          }
         }
       }
       if(shouldRemove)
